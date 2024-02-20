@@ -299,7 +299,14 @@ def confirm_email(token=None):
 @login_required
 def index():
     profile = Profile.query.filter_by(user_id=current_user.id).first_or_404()
-    return render_template('index.html', profile=profile)
+    return render_template('Pages/index.html', profile=profile)
+
+
+@accounts.route('/upload-video', strict_slashes=False)
+@login_required
+def upload_video():
+    profile = Profile.query.filter_by(user_id=current_user.id).first_or_404()
+    return render_template('Pages/upload-video.html', profile=profile)
 
 
 @accounts.route('/profile', methods=['GET', 'POST'], strict_slashes=False)

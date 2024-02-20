@@ -20,20 +20,21 @@
 	<!-- Page Title Here -->
 	<title>Akademi : School and Education Management Admin Dashboard Template</title>
 
-<!-- FAVICONS ICON -->
-	<link rel="shortcut icon" type="image/png" href="images/favicon.png" >
-	<link href="vendor/wow-master/css/libs/animate.css" rel="stylesheet">
-	<link href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="vendor/bootstrap-select-country/css/bootstrap-select-country.min.css">
-	<link rel="stylesheet" href="vendor/jquery-nice-select/css/nice-select.css">
-	<link href="vendor/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-	
-	 <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+	<!-- FAVICONS ICON -->
+	<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+	<link href="{{ url_for('static', filename='vendor/wow-master/css/libs/animate.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-select-country/css/bootstrap-select-country.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendor/jquery-nice-select/css/nice-select.css') }}">
+	<link href="{{ url_for('static', filename='vendor/datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+
+	<link href="{{ url_for('static', filename='vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 	<!--swiper-slider-->
-	<link rel="stylesheet" href="vendor/swiper/css/swiper-bundle.min.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendor/swiper/css/swiper-bundle.min.css') }}">
 	<!-- Style css -->
 	<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
 	
 </head>
 <body>
@@ -170,7 +171,14 @@
 											<div class="d-flex align-items-center sidebar-info">
 												
 											</div>
-											<img src="images/user.jpg" alt="">
+											{% if profile and profile.avator %}
+											<img class="rounded-circle mt-3 mb-3" style="object-fit: cover;width: 50px;height: 50px;"
+												src="{{ url_for('static', filename='assets/profile/'+profile.avator) }}">
+											{% else %}
+											<img src="{{ url_for('static', filename='assets/images/default_avator.png') }}"
+												alt="profile image" class="rounded-circle mt-3 mb-3"
+												style="object-fit: cover;width: 50px;height: 50px;" />
+											{% endif %}
 										</div>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end pb-0" style="">
@@ -178,11 +186,14 @@
 											<div class="card-header p-3">
 												<ul class="d-flex align-items-center">
 													<li>
-														<img src="images/user.jpg" class="ms-0" alt="">
+														{% if profile and profile.avator %}
+															<img src="{{ url_for('static', filename='assets/profile/'+profile.avator) }}" class="ms-0" alt="">
+														{% else %}
+															<img src="{{ url_for('static', filename='assets/images/default_avator.png') }}" class="ms-0" alt="">
+														{% endif %}
 													</li>
 													<li class="ms-2">
-														<h4 class="mb-0">Nella Vita</h4>
-														<span>Admin</span>
+														<h4 class="mb-0">@{{ current_user.username }}</h4>
 													</li>
 												</ul>
 
@@ -216,7 +227,7 @@
 			<div class="dlabnav-scroll">   
 				<ul class="metismenu" id="menu">
 					<li>
-						<a class="" href="javascript:void(0);" aria-expanded="false">
+						<a class="" href="/home" aria-expanded="false">
 							<i class="material-icons">dashboard</i>
 							<span class="nav-text">Dashboard</span>
 						</a>
@@ -227,9 +238,9 @@
 							<span class="nav-text">Upload Class Videos</span>
 						</a>
 						<ul aria-expanded="false">
-							<li><a href="upload-video.html">Upload Video</a></li>
-							<li><a href="process-video.html">Process Video</a></li>
-							<li><a href="insights.html">View Insights</a></li>
+							<li><a href="upload-video">Upload Video</a></li>
+							<li><a href="process-video">Process Video</a></li>
+							<li><a href="insights">View Insights</a></li>
 						</ul>
 					</li>
 					<li>
@@ -438,33 +449,33 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <!-- Required vendors -->
-    <script src="vendor/global/global.min.js"></script>
-	<script src="vendor/chart.js/Chart.bundle.min.js"></script>
-	<script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-	<!-- Apex Chart -->
-	<script src="vendor/apexchart/apexchart.js"></script>
-	<!-- Chart piety plugin files -->
-    <script src="vendor/peity/jquery.peity.min.js"></script>
-	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-	<!--swiper-slider-->
-	<script src="vendor/swiper/js/swiper-bundle.min.js"></script>
-	
-	
-    <!-- Datatable -->
-    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="js/plugins-init/datatables.init.js"></script>
+<!-- Required vendors -->
+<script src="{{ url_for('static', filename='vendor/global/global.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/chart.js/Chart.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
+<!-- Apex Chart -->
+<script src="{{ url_for('static', filename='vendor/apexchart/apexchart.js') }}"></script>
+<!-- Chart piety plugin files -->
+<script src="{{ url_for('static', filename='vendor/peity/jquery.peity.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+<!--swiper-slider-->
+<script src="{{ url_for('static', filename='vendor/swiper/js/swiper-bundle.min.js') }}"></script>
 
-	<!-- Dashboard 1 -->
-	<script src="js/dashboard/dashboard-1.js"></script>
-	<script src="vendor/wow-master/dist/wow.min.js"></script>
-	<script src="vendor/bootstrap-datetimepicker/js/moment.js"></script>
-	<script src="vendor/datepicker/js/bootstrap-datepicker.min.js"></script>
-	<script src="vendor/bootstrap-select-country/js/bootstrap-select-country.min.js"></script>
-	
-	<script src="js/dlabnav-init.js"></script>
-    <script src="js/custom.min.js"></script>
-	<script src="js/demo.js"></script>
+<!-- Datatable -->
+<script src="{{ url_for('static', filename='vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins-init/datatables.init.js') }}"></script>
+
+<!-- Dashboard 1 -->
+<script src="{{ url_for('static', filename='js/dashboard/dashboard-1.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/wow-master/dist/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap-datetimepicker/js/moment.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap-select-country/js/bootstrap-select-country.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/dlabnav-init.js') }}"></script>
+<script src="{{ url_for('static', filename='js/custom.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/demo.js') }}"></script>
+
 	
 	
 </body>
