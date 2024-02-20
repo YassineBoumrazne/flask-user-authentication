@@ -4,7 +4,8 @@ from flask_login import (
         current_user,
         login_required,
         login_user,
-        logout_user
+        logout_user,
+        login_required_teacher
     )
 
 from accounts.extensions import database as db
@@ -296,7 +297,7 @@ def confirm_email(token=None):
 
 @accounts.route('/', strict_slashes=False)
 @accounts.route('/home', strict_slashes=False)
-@login_required
+@login_required_teacher
 def index():
     profile = Profile.query.filter_by(user_id=current_user.id).first_or_404()
     return render_template('Pages/index.html', profile=profile)

@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap4
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import CSRFProtect
@@ -12,7 +12,7 @@ app = Flask(__name__)
 # Initialize Flask extensions
 
 # Bootstrap for styling client-side
-bootstrap = Bootstrap(app)
+bootstrap = Bootstrap4(app)
 
 # CSRF protection for form submission
 csrf = CSRFProtect(app)

@@ -23,9 +23,9 @@
 	<title>Akademi : School and Education Management Admin Dashboard Template</title>
 
 <!-- FAVICONS ICON -->
-	<link rel="shortcut icon" type="image/png" href="images/favicon.png" >
+	<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}" >
       <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     
 </head>
 
@@ -38,11 +38,11 @@
 						<h1 class="error-text text-primary">404</h1>
 						<h4> The page you were looking for is not found!</h4>
 						<p>You may have mistyped the address or the page may have moved.</p>
-                        <a class="btn btn-primary" href="index.html">Back to Home</a>
+                        <a class="btn btn-primary" href="/home">Back to Home</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12">
-					<img  class="w-100" src="images/svg/student.svg" alt="">
+					<img  class="w-100" src="{{ url_for('static', filename='images/svg/student.svg') }}" alt="">
 				</div>
             </div>
         </div>
@@ -53,9 +53,9 @@
 	Scripts
 ***********************************-->
 <!-- Required vendors -->
-<script src="vendor/global/global.min.js"></script>
-   <script src="js/dlabnav-init.js"></script>
-<script src="js/custom.min.js"></script>
+<script src="{{ url_for('static', filename='vendor/global/global.min.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/dlabnav-init.js') }}"></script>
+<script src="{{ url_for('static', filename='js/custom.min.js') }}"></script>
 
 </body>
 
